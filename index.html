@@ -1,0 +1,101 @@
+<html ng-app="myApp">
+    <head>
+    <link rel="stylesheet" type="text/css" href="style.css"> 
+        
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    </head>
+<body data-ng-controller="POSController">
+  <div class="container">
+    <div class="row">
+        
+      <div class="col-md-12">
+         
+        <div class="jumbotron">
+            <h1 class="display-4">Cafe Espressoo..</h1>
+          <h2><span class="text-warning">Come Find Some Food Ready !!</span> <span class="pull-right">And Coffee is Here..</span></h2>
+          <span class="pull-right text-muted">{{date | date:'MMM-dd-yyyy'}}</span>
+          <div class="text-muted">Washigton DC, USA </div>
+      
+        </div></div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="well">
+          <div class="box">
+            <div class="text-info">Breakfast</div>
+              <p>Click to add to Cart</p>
+            <hr>
+            
+            <img ng-src="images/pizza.jpg" ng-click="add(food.pizza)">
+            <img ng-src="images/donut.jpg" ng-click="add(food.donut)">
+        <img ng-src="images/tortilla.jpg"ng-click="add(food.tortilla)">
+            <img ng-src="images/burger.jpg" ng-click="add(food.burger)">
+            <img ng-src="images/samosa.jpg" ng-click="add(food.samosa)">
+          </div>
+            
+          <br>
+          <div class="box">
+            <div class="text-info">Bewerages</div>
+            <p>Click to add to Cart</p>
+              <hr>
+                        
+
+            <img ng-src="images/coldcoffee.jpg" ng-click="add(food.coldcoffee)">
+            <img ng-src="images/hotcoffee.png"  ng-click="add(food.hotcoffee)">
+            <img ng-src="images/coke.jpg" ng-click="add(food.coke)">
+            <img ng-src="images/dietcoke.png" ng-click="add(food.dietcoke)">
+            <img ng-src="images/pepsi.jpg" ng-click="add(food.pepsi)">
+          </div>
+          
+        </div>
+      </div>
+      
+      <div class="col-sm-6">
+        <div class="well">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Order Details</h3>
+            </div>
+            <div class="panel-body" style="max-height:320px; overflow:auto;">
+              <div class="text-warning" ng-hide="order.length">
+                Noting ordered yet !
+              </div>
+              <ul class="list-group">
+                <li class="list-group-item" ng-repeat = "item in order">
+                  <div class="label label-success" >${{item.item.price}}</div>
+                   {{item.item.detail}}
+                  
+                  <button class="btn btn-danger btn-xs pull-right" ng-click="deleteItem($index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </li>
+              </ul>
+
+            </div>
+            <div class="panel-footer" ng-show="order.length">
+              <div class="label label-danger">Total: ${{getSum()}}</div>
+            </div>
+            <div class="panel-footer" ng-show="order.length">
+              <div class="text-muted">
+               Click Checkout For The Order
+              </div>
+            </div>
+            <div class="pull-right">
+              <span class="btn btn-primary" ng-click="clearOrder()" ng-disabled="!order.length">Clear</span>
+              <span class="btn btn-danger" ng-click="checkout()" ng-disabled="!order.length">Checkout</span>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
